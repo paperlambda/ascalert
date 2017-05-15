@@ -1,4 +1,5 @@
 const path = require('path');
+const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry : './src/index.js',
@@ -13,13 +14,27 @@ module.exports = {
     module: {
         loaders: [
             {
-                test:/\.es6$/,
+                test:/\.js$/,
                 exclude: '/node_modules',
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015']
                 }
             }
+        ],
+        rules: [
+            {
+                test:/\.css$/,
+                use: extractTextWebpackPlugin.extract(
+                    {
+                        fallback: 'style-loader',
+                        use:'css-loader'
+                    }
+                )
+            }
         ]
-    }
+    },
+    plugins: [
+        new extractTextWebpackPlugin('ascalert.css')
+    ]
 };

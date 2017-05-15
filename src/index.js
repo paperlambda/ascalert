@@ -1,5 +1,6 @@
 import {throwAlert} from './modules/ascalert-handler';
 import {setParams} from './modules/set-params';
+import './styles.css';
 
 let ascalert = (args) => {
     let message = args;
