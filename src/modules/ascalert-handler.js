@@ -1,5 +1,5 @@
 import template from './template';
-import {show} from './dom-handler';
+import {show, fadeIn, addClass, slideUp} from './dom-handler';
 
 const alertClass = '.ascalert';
 
@@ -17,11 +17,16 @@ const getAlert = () => {
       ascalertInit();
       $alert = getAlert();
   }
+  // Add css class
+  addClass($alert, 'slide-up-ready');
+  $alert.style.bottom = "-80px";
   return $alert;
 };
 
 const throwAlert = () => {
     let $alert = getAlert();
+    slideUp($alert);
+    // fadeIn($alert,10);
     show($alert);
 };
 

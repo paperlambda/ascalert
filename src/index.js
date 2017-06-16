@@ -1,8 +1,8 @@
 import {throwAlert} from './modules/ascalert-handler';
 import {setParams} from './modules/set-params';
-import './styles.css';
+import './styles.scss';
 
-let ascalert = (args) => {
+let ascalert = (args, timer = null) => {
     let message = args;
     let params = {};
     if (message === undefined) {

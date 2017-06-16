@@ -1,0 +1,32 @@
+.translate-neutral{
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.ascalert{
+    width: 300px;
+    background-color: #1d1d1d;
+    padding:19px 25px;
+    border-left:7px solid #5cb85c;
+    transition: border 0.4s ease-in;
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    @extend .translate-neutral;
+    bottom:10px;
+    left:50%;
+    p{
+        color:white;
+        margin: 0px;
+        font-size: 13px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+//    COMPONENT STATE
+    &.slide-up-ready{
+        bottom:-100px;
+        transition: all 0.2s cubic-bezier(0.0, 0.0, 0.2, 1);;
+    }
+}
