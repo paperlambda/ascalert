@@ -38,8 +38,6 @@ let ascalert = (args, timer = undefined) => {
     let $alert = getAlert();
     let closeBtn = $alert.querySelectorAll('.ascalert-close');
     closeBtn[0]['onclick'] = (e) => handleClose(e,$alert);
-
-
 };
 
 ascalert.close = () => {

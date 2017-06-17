@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -12,16 +13,6 @@ module.exports = {
         extensions: ['.js']
     },
     module: {
-        loaders: [
-            {
-                test:/\.js$/,
-                exclude: '/node_modules',
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015']
-                }
-            }
-        ],
         rules: [
             {
                 test:/\.scss$/,
@@ -31,10 +22,30 @@ module.exports = {
                         use:'css-loader!sass-loader'
                     }
                 )
+            },
+            {
+                test:/\.js$/,
+                exclude: '/node_modules',
+                use: 'babel-loader?presets[]=es2015'
             }
         ]
     },
     plugins: [
-        new extractTextWebpackPlugin('ascalert.css')
+        new extractTextWebpackPlugin('ascalert.css'),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            beautify: false,
+            mangle: {
+                screw_ie8: true,
+                keep_fnames: true
+            },
+            compress: {
+                screw_ie8: true
+            },
+            comments: false
+        })
     ]
 };
