@@ -1,24 +1,38 @@
-import {throwAlert} from './modules/ascalert-handler';
+import {throwAlert, closeAlert} from './modules/ascalert-handler';
 import {setParams} from './modules/set-params';
 import './styles.scss';
 
-let ascalert = (args, timer = null) => {
-    let message = args;
+let ascalert = (args, timer = undefined) => {
     let params = {};
-    if (message === undefined) {
+    if (args === undefined) {
         console.error('Ascalert needs at least 1 arguments');
         return false
     };
-    switch (typeof message){
+    switch (typeof args){
         case 'string':
-        params.text = message;
+        params.text = args;
         break;
         default:
-        console.error('Unexpected type of arguments. Expected "string", got ' + typeof message);
+        console.error('Unexpected type of arguments. Expected "string", got ' + typeof args);
         return false;
     }
+
     setParams(params);
     throwAlert();
+
+    if(timer !== undefined){
+        switch (typeof timer){
+            case 'number':
+                setTimeout(function () {
+                    closeAlert()
+                }, timer);
+                break;
+            default:
+                console.error('Unexpected type of arguments. Expected "number", got ' + typeof timer);
+                return false;
+        }
+    }
+
 };
 
 if(typeof window !== 'undefined'){

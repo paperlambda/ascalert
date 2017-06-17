@@ -23,15 +23,17 @@ const removeClass = (elem, className) => {
     }
 };
 
-const fadeIn = (elem, interval) => {
-    if(+elem.style.opacity < 1){
-        interval = interval || 16;
-        elem.style.opacity = 0;
-        elem.style.display = 'block';
+const fadeOut = (elem, interval) => {
+    interval = interval || 16;
+    elem.style.opacity = 1;
+    if(+elem.style.opacity > 0){
         let tick = () => {
-            elem.style.opacity = +elem.style.opacity + 0.05;
-            if(+elem.style.opacity < 1){
+            console.log(elem.style.opacity);
+            elem.style.opacity = +elem.style.opacity - 0.05;
+            if(+elem.style.opacity > 0){
                 setTimeout(tick, interval);
+            } else {
+                elem.style.display = 'none';
             }
         };
         tick();
@@ -42,24 +44,25 @@ const slideUp = (elem) => {
     if(parseInt(elem.style.bottom) != 0){
         let sec = +new Date();
         let tick = () => {
-            elem.style.bottom = (parseInt(elem.style.bottom) + (new Date() - sec) / 100) + 'px';
+            elem.style.bottom = (parseInt(elem.style.bottom) + 0.005) + 'px';
             sec = +new Date();
-
-            if(parseInt(elem.style.bottom) != 0){
-                setTimeout(tick, 0.0001);
+            if(parseInt(elem.style.bottom) != 0) {
+                console.log(parseInt(elem.style.bottom));
+                setTimeout(tick, 0.001);
             }
         };
         tick();
     }
-    // addClass(elem, 'slide-up');
 };
+
+
 
 
 export {
     show,
-    fadeIn,
     addClass,
     hasClass,
     removeClass,
-    slideUp
+    slideUp,
+    fadeOut
 }

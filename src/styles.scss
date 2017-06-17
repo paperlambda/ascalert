@@ -9,24 +9,65 @@
     width: 300px;
     background-color: #1d1d1d;
     padding:19px 25px;
-    border-left:7px solid #5cb85c;
-    transition: border 0.4s ease-in;
     display: none;
     position: fixed;
     z-index: 99999;
     @extend .translate-neutral;
     bottom:10px;
     left:50%;
-    p{
-        color:white;
-        margin: 0px;
-        font-size: 13px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    .ascalert-content{
+        position: relative;
+        p{
+            color:white;
+            margin: 0px;
+            font-size: 13px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .ascalert-close{
+            position: absolute;
+            right: -20px;
+            top:50%;
+            cursor:pointer;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #2A2A2A;
+            @extend .translate-neutral;
+
+            &:hover,&:focus{
+                background-color: lighten(#2A2A2A, 15);
+            }
+
+            .x-mark{
+                position: relative;
+                .st-line{
+                    position: absolute;
+                    height: 1px;
+                    width: 13px;
+                    background-color: white;
+                    top:7px;
+                    display: block;
+                    &.st-left{
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                        left:1px;
+                    }
+                    &.st-right{
+                        -webkit-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+                        left:2px;
+                    }
+                }
+            }
+        }
     }
 
 //    COMPONENT STATE
-    &.slide-up-ready{
-        bottom:-100px;
-        transition: all 0.2s cubic-bezier(0.0, 0.0, 0.2, 1);;
+    &.slide-up{
+        transition: all 0.2s cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+    &.slide-up-done{
+        transition:all 0.2s cubic-bezier(0.4, 0.0, 1, 1);
     }
 }
