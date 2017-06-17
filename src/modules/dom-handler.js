@@ -33,6 +33,7 @@ const fadeOut = (elem, interval) => {
                 setTimeout(tick, interval);
             } else {
                 elem.style.display = 'none';
+                removeElement(elem);
             }
         };
         tick();
@@ -53,6 +54,11 @@ const slideUp = (elem) => {
     }
 };
 
+const removeElement = (elem) => {
+    //  Remove element
+    elem.parentNode.removeChild(elem);
+    return false;
+};
 
 
 
@@ -62,5 +68,6 @@ export {
     hasClass,
     removeClass,
     slideUp,
-    fadeOut
+    fadeOut,
+    removeElement
 }

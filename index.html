@@ -5,9 +5,18 @@
         <link rel="stylesheet" href="./dist/ascalert.css">
     </head>
     <body>
+        <div>
+            <button onclick="showalert()"> Show Alert </button>
+            <button onclick="showalerttimer()"> Show Alert with Timer </button>
+        </div>
         <script src="./dist/ascalert.js"></script>
         <script type="text/javascript">
-            ascalert('Ascalert here!');
+            function showalert() {
+                ascalert('Simple alert notification!');
+            }
+            function showalerttimer() {
+                ascalert('Simple alert notification with TIMER!', 2000);
+            }
         </script>
     </body>
 </html>

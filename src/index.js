@@ -1,5 +1,5 @@
 import {throwAlert, getAlert, handleClose} from './modules/ascalert-handler';
-import {removeClass, fadeOut} from './modules/dom-handler';
+import {removeClass, fadeOut, removeElement} from './modules/dom-handler';
 import {setParams} from './modules/set-params';
 import './styles.scss';
 
@@ -19,6 +19,7 @@ let ascalert = (args, timer = undefined) => {
     }
 
     setParams(params);
+
     throwAlert();
 
     if(timer !== undefined){
@@ -43,7 +44,7 @@ let ascalert = (args, timer = undefined) => {
 ascalert.close = () => {
     let $alert = getAlert();
     removeClass($alert, 'slide-up');
-    fadeOut($alert,16)
+    fadeOut($alert,16);
 };
 
 if(typeof window !== 'undefined'){
