@@ -1,4 +1,5 @@
-import {throwAlert, closeAlert} from './modules/ascalert-handler';
+import {throwAlert, getAlert, handleClose} from './modules/ascalert-handler';
+import {removeClass, fadeOut} from './modules/dom-handler';
 import {setParams} from './modules/set-params';
 import './styles.scss';
 
@@ -24,7 +25,7 @@ let ascalert = (args, timer = undefined) => {
         switch (typeof timer){
             case 'number':
                 setTimeout(function () {
-                    closeAlert()
+                    ascalert.close();
                 }, timer);
                 break;
             default:
@@ -33,6 +34,18 @@ let ascalert = (args, timer = undefined) => {
         }
     }
 
+    // Attach close function to element
+    let $alert = getAlert();
+    let closeBtn = $alert.querySelectorAll('.ascalert-close');
+    closeBtn[0]['onclick'] = (e) => handleClose(e,$alert);
+
+
+};
+
+ascalert.close = () => {
+    let $alert = getAlert();
+    removeClass($alert, 'slide-up');
+    fadeOut($alert,16)
 };
 
 if(typeof window !== 'undefined'){

@@ -28,7 +28,6 @@ const fadeOut = (elem, interval) => {
     elem.style.opacity = 1;
     if(+elem.style.opacity > 0){
         let tick = () => {
-            console.log(elem.style.opacity);
             elem.style.opacity = +elem.style.opacity - 0.05;
             if(+elem.style.opacity > 0){
                 setTimeout(tick, interval);
@@ -47,7 +46,6 @@ const slideUp = (elem) => {
             elem.style.bottom = (parseInt(elem.style.bottom) + 0.005) + 'px';
             sec = +new Date();
             if(parseInt(elem.style.bottom) != 0) {
-                console.log(parseInt(elem.style.bottom));
                 setTimeout(tick, 0.001);
             }
         };

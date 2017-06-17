@@ -27,6 +27,10 @@ const throwAlert = () => {
     show($alert);
 };
 
+const handleClose = () => {
+    ascalert.close();
+};
+
 const closeAlert = () => {
     let $alert = getAlert();
     removeClass($alert, 'slide-up');
@@ -37,5 +41,6 @@ export {
     ascalertInit,
     getAlert,
     throwAlert,
-    closeAlert
+    closeAlert,
+    handleClose
 }
